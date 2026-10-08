@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English B1 • Return to Titanic</title>
+    <style>
+        :root {
+            --bg-color: #0b1120;
+            --card-bg: #161f30;
+            --subcard-bg: #1e293b;
+            --border-color: #334155;
+            --text-main: #cbd5e1;
+            --text-bright: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-cyan: #22d3ee;
+            --accent-purple: #c084fc;
+            --accent-amber: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .header-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 34px 24px;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .header-card h1 {
+            color: var(--text-bright);
+            font-size: 2.1rem;
+            margin-bottom: 8px;
+        }
+
+        .header-card p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .section-title {
+            color: var(--accent-cyan);
+            font-size: 1.35rem;
+            font-weight: 700;
+        }
+
+        .exercise {
+            background-color: var(--subcard-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .exercise-title {
+            color: var(--text-bright);
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .instruction {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            margin-bottom: 14px;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        li {
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .vocab-table th, .vocab-table td {
+            text-align: left;
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.93rem;
+        }
+
+        .vocab-table th {
+            color: var(--accent-blue);
+            background-color: rgba(56, 189, 248, 0.08);
+            font-weight: 600;
+        }
+
+        .vocab-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .word {
+            font-weight: 600;
+            color: var(--text-bright);
+        }
+
+        .text-box {
+            background-color: #0f172a;
+            border-left: 4px solid var(--accent-blue);
+            padding: 16px;
+            border-radius: 4px;
+            font-size: 0.94rem;
+            line-height: 1.65;
+            margin-bottom: 14px;
+        }
+
+        .text-box p {
+            margin-bottom: 10px;
+        }
+
+        .text-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .theory-box {
+            background: rgba(192, 132, 252, 0.07);
+            border: 1px solid rgba(192, 132, 252, 0.3);
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 14px;
+        }
+
+        .theory-box h4 {
+            color: #d8b4fe;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        input[type="text"] {
+            background-color: #0b1120;
+            border: 1px solid var(--border-color);
+            color: #f8fafc;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--accent-blue);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header-card">
+        <span class="badge">Intermediate B1 • Unit 3B</span>
+        <h1>Return to Titanic</h1>
+        <p>Underwater Discoveries & Shipwrecks • Grammar: Past Perfect Simple</p>
+    </div>
+
+    <!-- 1. WARM-UP -->
+    <div class="section-card">
+        <div class="section-title">1. Warm-Up</div>
+
+        <div class="exercise">
+            <div class="exercise-title">Exercise 1.1: Titanic Facts & Associations</div>
+            <div class="instruction">Discuss the questions with your tutor:</div>
+            <ul>
+                <li>What three facts do you immediately remember when you hear the word <i>Titanic</i>?</li>
+                <li>Why do you think people around the world are still fascinated by this tragedy more than a century later?</li>
+                <li>Have you seen James Cameron's 1997 film <i>Titanic</i> or any documentary about it? What impressed you the most?</li>
+            </ul>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Exercise 1.2: Deep-Sea Exploration Dilemma</div>
+            <div class="instruction">Choose an opinion and explain your point of view:</div>
+            <ul>
+                <li><strong>View A:</strong> Historic shipwrecks like Titanic should be treated as underwater graves and left completely untouched on the seabed.</li>
+                <li><strong>View B:</strong> Scientists should bring historical objects to museums so the public can see and remember them.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 2. VOCABULARY -->
+    <div class="section-card">
+        <div class="section-title">2. Vocabulary: Marine Discoveries & Tragedy</div>
+
+        <div class="exercise">
+            <div class="exercise-title">Vocabulary List</div>
+            <div class="instruction">Study the core vocabulary from the unit:</div>
+            <table class="vocab-table">
+                <thead>
+                    <tr>
+                        <th>Word / Phrase</th>
+                        <th>Translation</th>
+                        <th>Definition / Context</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="word">wreck / shipwreck</td>
+                        <td>обломки кораблекрушения, затонувшее судно</td>
+                        <td>the broken remains of a sunken ship</td>
+                    </tr>
+                    <tr>
+                        <td class="word">debris</td>
+                        <td>обломки, осколки, мусор</td>
+                        <td>broken pieces scattered after a disaster</td>
+                    </tr>
+                    <tr>
+                        <td class="word">seabed</td>
+                        <td>морское дно</td>
+                        <td>the solid floor of the sea or ocean</td>
+                    </tr>
+                    <tr>
+                        <td class="word">steamship</td>
+                        <td>пароход</td>
+                        <td>a large ship powered by steam engines</td>
+                    </tr>
+                    <tr>
+                        <td class="word">maiden voyage</td>
+                        <td>первый рейс (судна)</td>
+                        <td>the very first journey made by a new craft</td>
+                    </tr>
+                    <tr>
+                        <td class="word">submersible / submarine</td>
+                        <td>подводный аппарат / подлодка</td>
+                        <td>a vessel capable of operating underwater</td>
+                    </tr>
+                    <tr>
+                        <td class="word">collide (with)</td>
+                        <td>сталкиваться</td>
+                        <td>to crash forcefully into something</td>
+                    </tr>
+                    <tr>
+                        <td class="word">remains</td>
+                        <td>останки, сохранившиеся части</td>
+                        <td>parts left over after destruction or decay</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Vocab Practice 1 -->
+        <div class="exercise">
+            <div class="exercise-title">Exercise 2.1: Context Matching</div>
+            <div class="instruction">Fill in the gaps with the correct word from the list: <i>[debris, maiden voyage, seabed, wreck]</i></div>
+            <ol>
+                <li>In 1912, the luxury liner sank during its ____________ from Southampton to New York. &rarr; <input type="text"></li>
+                <li>Dr Robert Ballard discovered the ____________ of Titanic lying 3,800 metres below the surface. &rarr; <input type="text"></li>
+                <li>The first sign of the ship was an extensive trail of ____________ scattered across the sand. &rarr; <input type="text"></li>
+                <li>Special deep-sea cameras were sent all the way down to the ____________ . &rarr; <input type="text"></li>
+            </ol>
+        </div>
+
+        <!-- Vocab Practice 2 -->
+        <div class="exercise">
+            <div class="exercise-title">Exercise 2.2: Dependent Prepositions & Collocations</div>
+            <div class="instruction">Choose the correct preposition:</div>
+            <ol>
+                <li>On 15 April 1912, the ship collided (<i>against / with / into</i>) a giant iceberg. &rarr; <input type="text"></li>
+                <li>Ballard returned to the site to see how it had changed (<i>in / over / on</i>) the years. &rarr; <input type="text"></li>
+                <li>He believes that people should treat the site (<i>with / for / under</i>) deep respect. &rarr; <input type="text"></li>
+            </ol>
+        </div>
+
+        <!-- Vocab Practice 3 -->
+        <div class="exercise">
+            <div class="exercise-title">Exercise 2.3: Word Choice & Synonyms</div>
+            <div class="instruction">Replace the underlined phrase with a suitable word from the vocabulary table:</div>
+            <ol>
+                <li>They were searching for <u>the broken metal parts of two military submarines</u>. &rarr; <input type="text"></li>
+                <li>The scientist asked tourists to leave the <u>preserved physical objects</u> where they were. &rarr; <input type="text"></li>
+                <li>The large <u>passenger ship driven by steam</u> was deemed unsinkable. &rarr; <input type="text"></li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 3. READING -->
+    <div class="section-card">
+        <div class="section-title">3. Reading: Return to Titanic</div>
+
+        <div class="text-box">
+            <p style="color: var(--accent-amber); font-weight: 600;">On 15 April 1912, the largest passenger steamship ever built hit an iceberg and sank in the North Atlantic Ocean. Titanic had left Southampton, England, five days earlier on her maiden voyage.</p>
+            <p style="color: var(--text-muted); font-style: italic;">In 1985, explorer Dr Robert Ballard found the wreck of Titanic. In 2004, he returned to see how it had changed.</p>
+            <p><strong>[ 1 ]</strong> It was during the Cold War. I was on a secret mission when we found Titanic. The US Navy had agreed to pay for our new underwater video technology. In return, we had agreed to use that technology to look for two nuclear submarines which had disappeared in the 1960s.</p>
+            <p><strong>[ 2 ]</strong> Not at first, because many ships had sunk in that area. When we realized it was Titanic, we jumped for joy. Then we realized we were celebrating something where 1,500 people had died.</p>
+            <p><strong>[ 3 ]</strong> I saw champagne bottles with the corks still in. The box holding the bottles had disappeared long ago. Suddenly, I noticed a woman's shoe. Nearby, I saw a pair of smaller shoes — perhaps they'd belonged to a child. I felt that the people who had died here in 1912 were speaking to me again. But I knew that other people had been there since my first visit. Hollywood film-maker James Cameron had been there. A New York couple had even got married there! I was disappointed. I'd asked people to treat Titanic's remains with respect.</p>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Exercise 3.1: Heading & Question Matching</div>
+            <div class="instruction">Match three of the questions (a–e) to the numbered paragraphs (1–3) in the interview:</div>
+            <ol>
+                <li>Paragraph 1 &rarr; [ <input type="text" size="4"> ]</li>
+                <li>Paragraph 2 &rarr; [ <input type="text" size="4"> ]</li>
+                <li>Paragraph 3 &rarr; [ <input type="text" size="4"> ]</li>
+            </ol>
+            <p style="margin-top:10px; color: var(--text-muted); font-size: 0.9rem;">
+                <b>a.</b> Did you know you were looking at Titanic when you saw the first pieces of debris?<br>
+                <b>b.</b> How did you discover Titanic?<br>
+                <b>c.</b> How long did it take to locate Titanic?<br>
+                <b>d.</b> Tell me about the experience of seeing Titanic again in 2004.<br>
+                <b>e.</b> When did you find out about how Titanic sank?
+            </p>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Exercise 3.2: Detailed Comprehension</div>
+            <div class="instruction">Answer the questions according to the text:</div>
+            <ol>
+                <li>What was the secret US Navy mission Dr Ballard had agreed to complete? &rarr; <input type="text" style="width: 80%;"></li>
+                <li>Why did the team's mood quickly change from joy to quiet reflection upon discovering the ship? &rarr; <input type="text" style="width: 80%;"></li>
+                <li>Why was Dr Ballard disappointed when he returned to the site in 2004? &rarr; <input type="text" style="width: 80%;"></li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 4. GRAMMAR -->
+    <div class="section-card">
+        <div class="section-title">4. Grammar: Past Perfect Simple</div>
+
+        <div class="theory-box">
+            <h4>Grammar Rule: had + V3 (Past Participle)</h4>
+            <p><strong>Use:</strong> To show that an action happened <b>before</b> another action or time in the past (the "past of the past").</p>
+            <p style="margin-top: 6px; color: var(--text-bright);"><i>Timeline:</i> [Action 1: Past Perfect] &rarr; [Action 2: Past Simple] &rarr; [Present]</p>
+            <p style="margin-top: 8px;">• <i>Titanic had left Southampton five days earlier before it hit an iceberg.</i><br>
+            • <i>The wooden box had disappeared, but the glass bottles remained.</i></p>
+        </div>
+
+        <!-- Grammar Ex 1 -->
+        <div class="exercise">
+            <div class="exercise-title">Exercise 4.1: Chronological Order of Past Events</div>
+            <div class="instruction">Put the events (a, b, c) in the order they actually happened in real time (1 = earliest):</div>
+            <p style="color: var(--accent-blue); font-size: 0.9rem; margin-bottom: 8px;"><strong>Set 1:</strong></p>
+            <ol>
+                <li>[ &nbsp; ] Ballard found Titanic.</li>
+                <li>[ &nbsp; ] The US Navy agreed to pay for new video technology.</li>
+                <li>[ &nbsp; ] Ballard agreed to search for two missing submarines.</li>
+            </ol>
+            <p style="color: var(--accent-blue); font-size: 0.9rem; margin: 12px 0 8px;"><strong>Set 2:</strong></p>
+            <ol>
+                <li>[ &nbsp; ] James Cameron visited the wreck.</li>
+                <li>[ &nbsp; ] Ballard noticed a pair of shoes.</li>
+                <li>[ &nbsp; ] The box for the champagne bottles disappeared.</li>
+            </ol>
+        </div>
+
+        <!-- Grammar Ex 2 -->
+        <div class="exercise">
+            <div class="exercise-title">Exercise 4.2: Past Simple or Past Perfect?</div>
+            <div class="instruction">Choose the correct option:</div>
+            <ol>
+                <li>When Titanic hit the iceberg, it (<i>was / had been</i>) at sea for five days. &rarr; <input type="text"></li>
+                <li>By the time the rescue boat Carpathia arrived, the ship (<i>sank / had sunk</i>). &rarr; <input type="text"></li>
+                <li>Ballard realized that several tourists (<i>visited / had visited</i>) the site before 2004. &rarr; <input type="text"></li>
+                <li>When the alarm sounded, most passengers (<i>went / had already gone</i>) to sleep. &rarr; <input type="text"></li>
+            </ol>
+        </div>
+
+        <!-- Grammar Ex 3 -->
+        <div class="exercise">
+            <div class="exercise-title">Exercise 4.3: Sentence Completion</div>
+            <div class="instruction">Put the verbs in brackets into the correct tense (Past Simple or Past Perfect):</div>
+            <ol>
+                <li>Dr Ballard ____________ (return) to Titanic nineteen years after he ____________ (find) it.</li>
+                <li>He was sad because commercial tourists ____________ (not treat) the site with respect.</li>
+                <li>When the submarine ____________ (reach) the seabed, the crew couldn't believe what they saw.</li>
+                <li>A New York couple ____________ (get) married on the site before Ballard came back in 2004.</li>
+            </ol>
+        </div>
+
+        <!-- Grammar Ex 4 -->
+        <div class="exercise">
+            <div class="exercise-title">Exercise 4.4: "By the time..." Transformations</div>
+            <div class="instruction">Combine the two facts into one sentence using <b>By the time</b> and the <b>Past Perfect</b>:</div>
+            <ol>
+                <li>Fact 1: Captain Smith sounded the distress alarm.<br>
+                Fact 2: A large volume of water had already entered the lower decks.<br>
+                &rarr; <i>By the time Captain Smith __________________________________________________ .</i></li>
+                <li>Fact 1: Ballard made his second expedition in 2004.<br>
+                Fact 2: Several expeditions had already taken items from the wreck.<br>
+                &rarr; <i>By the time Ballard ______________________________________________________ .</i></li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 5. SPEAKING -->
+    <div class="section-card">
+        <div class="section-title">5. Speaking</div>
+
+        <div class="exercise">
+            <div class="exercise-title">Task 5.1: The Moral Debate</div>
+            <div class="instruction">Discuss with your tutor:</div>
+            <ul>
+                <li>Dr Ballard said: <i>"Titanic's remains are like a cemetery, and people should treat them with respect."</i> Do you agree that extreme tourism (like submarine dives for wealthy tourists or underwater weddings) should be banned at the site? Why or why not?</li>
+                <li>What rules would you set if you were in charge of protecting historical shipwrecks?</li>
+            </ul>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Task 5.2: What Had Happened? (Role-Play & Speculation)</div>
+            <div class="instruction">Look at the items Ballard found on the seabed: a woman's shoe, a child's shoe, sealed champagne bottles:</div>
+            <ul>
+                <li>Pick one object and reconstruct its backstory using the Past Perfect: <i>Who had owned it? What had they been doing that evening before the ship hit the iceberg? What had happened right before the ship went down?</i></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
