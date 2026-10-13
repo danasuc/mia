@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework • Return to Titanic (Past Perfect & Marine Discovery)</title>
+    <style>
+        :root {
+            --bg-color: #0b1120;
+            --card-bg: #161f30;
+            --subcard-bg: #1e293b;
+            --border-color: #334155;
+            --text-main: #cbd5e1;
+            --text-bright: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-cyan: #22d3ee;
+            --accent-purple: #c084fc;
+            --accent-amber: #f59e0b;
+            --accent-emerald: #3fb950;
+            --accent-crimson: #f85149;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 880px;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .header-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 34px 24px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue), var(--accent-purple));
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .header-card h1 {
+            color: var(--text-bright);
+            font-size: 2.1rem;
+            margin-bottom: 8px;
+        }
+
+        .header-card p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        .svg-icon {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+            color: var(--accent-cyan);
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            color: var(--accent-cyan);
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .exercise {
+            background-color: var(--subcard-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .exercise-title {
+            color: var(--text-bright);
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .instruction {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+        }
+
+        .instruction em {
+            color: var(--accent-amber);
+            font-style: normal;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        li {
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        .timeline-box {
+            background: rgba(192, 132, 252, 0.08);
+            border-left: 4px solid var(--accent-purple);
+            padding: 16px;
+            border-radius: 4px;
+            font-size: 0.93rem;
+            line-height: 1.65;
+        }
+
+        .timeline-box strong {
+            color: #d8b4fe;
+        }
+
+        input[type="text"] {
+            background-color: #0b1120;
+            border: 1px solid var(--border-color);
+            color: #f8fafc;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.92rem;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
+        }
+
+        input[type="text"].correct {
+            border-color: var(--accent-emerald) !important;
+            background-color: rgba(63, 185, 80, 0.12) !important;
+        }
+
+        input[type="text"].incorrect {
+            border-color: var(--accent-crimson) !important;
+            background-color: rgba(248, 81, 73, 0.12) !important;
+        }
+
+        textarea {
+            width: 100%;
+            background-color: #0b1120;
+            border: 1px solid var(--border-color);
+            color: #f8fafc;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.93rem;
+            font-family: inherit;
+            outline: none;
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.6;
+        }
+
+        textarea:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
+        }
+
+        .btn-check {
+            align-self: flex-start;
+            background-color: #1e293b;
+            color: var(--text-bright);
+            border: 1px solid var(--border-color);
+            padding: 8px 18px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 6px;
+        }
+
+        .btn-check:hover {
+            background-color: #334155;
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        .feedback-msg {
+            font-size: 0.88rem;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .feedback-msg.show {
+            display: block;
+        }
+
+        .feedback-msg.good {
+            color: var(--accent-emerald);
+        }
+
+        .feedback-msg.bad {
+            color: var(--accent-crimson);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header-card">
+        <span class="badge">Independent Practice • Homework</span>
+        <h1>Unit 3B: Return to Titanic Mastery</h1>
+        <p>Consolidation of Past Perfect Simple, Time Markers (by the time, before, after), and Deep-Sea Vocabulary.</p>
+    </div>
+
+    <!-- PART 1: VOCABULARY DRILL -->
+    <div class="section-card">
+        <div class="section-header">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <div class="section-title">Part 1: Deep-Sea & Disaster Vocabulary Recall</div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Task 1.1: Precision Word Choice</div>
+            <div class="instruction">Fill in the gaps using: <em>[maiden voyage, collided, debris, seabed, wreck, remains]</em></div>
+            <ol>
+                <li>The legendary steamship was on its <input type="text" data-ans="maiden voyage" placeholder="..."> when the catastrophe struck.</li>
+                <li>The vessel <input type="text" data-ans="collided" placeholder="..."> with a massive underwater iceberg at high speed.</li>
+                <li>For decades, the broken <input type="text" data-ans="wreck" placeholder="..."> lay silent 3.8 kilometres beneath the waves.</li>
+                <li>Pieces of scattered luggage, tiles, and metal formed an immense trail of <input type="text" data-ans="debris" placeholder="..."> across the sand.</li>
+                <li>Robot submersibles surveyed the dark <input type="text" data-ans="seabed" placeholder="..."> to document the ship's condition.</li>
+                <li>Ballard urged international visitors to treat the victims' <input type="text" data-ans="remains" placeholder="..."> with deep moral respect.</li>
+            </ol>
+            <button class="btn-check" onclick="checkTask(this)">Check Answers</button>
+            <div class="feedback-msg"></div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Task 1.2: Dependent Prepositions Mastery</div>
+            <div class="instruction">Choose and type the correct preposition (<em>with, in, over, for</em>):</div>
+            <ol>
+                <li>The cruise ship collided <input type="text" size="6" data-ans="with" placeholder="..."> an iceberg in the North Atlantic.</li>
+                <li>Dr Ballard wanted to examine how the rust had spread <input type="text" size="6" data-ans="over" placeholder="..."> the intervening 19 years.</li>
+                <li>The expedition had agreed to look <input type="text" size="6" data-ans="for" placeholder="..."> two missing US nuclear submarines.</li>
+                <li>He firmly believed the historical site deserved to be treated <input type="text" size="6" data-ans="with" placeholder="..."> dignity.</li>
+            </ol>
+            <button class="btn-check" onclick="checkTask(this)">Check Answers</button>
+            <div class="feedback-msg"></div>
+        </div>
+    </div>
+
+    <!-- PART 2: GRAMMAR GYM (PAST PERFECT) -->
+    <div class="section-card">
+        <div class="section-header">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.2 3.1.8-1.3-4.5-2.7V7z"/></svg>
+            <div class="section-title">Part 2: Grammar Workout (Past Simple vs. Past Perfect)</div>
+        </div>
+
+        <div class="timeline-box">
+            <strong>Key Reminder:</strong> When talking about two finished events in the past, use the <strong>Past Perfect (had + V3)</strong> for the earlier event, and the <strong>Past Simple (V2)</strong> for the subsequent event.
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Task 2.1: Chronology & Gap-Fill</div>
+            <div class="instruction">Open the brackets with the correct past form (Past Simple or Past Perfect):</div>
+            <ol>
+                <li>Titanic <input type="text" data-ans="had sailed" placeholder="sail..."> for four days before it struck the ice field.</li>
+                <li>When the radio operator sent out the SOS signal, seawater <input type="text" data-ans="had already flooded" placeholder="already / flood..."> the boiler rooms.</li>
+                <li>Dr Ballard <input type="text" data-ans="did not know" placeholder="not / know..."> that the video gear would locate the ship so quickly.</li>
+                <li>By the time the rescue ship Carpathia arrived, the Titanic <input type="text" data-ans="had gone" placeholder="go..."> completely under.</li>
+                <li>When Ballard returned in 2004, he saw that private tourists <input type="text" data-ans="had taken" placeholder="take..."> several souvenirs.</li>
+            </ol>
+            <button class="btn-check" onclick="checkTask(this)">Check Answers</button>
+            <div class="feedback-msg"></div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Task 2.2: "By the Time" Sentence Transformations</div>
+            <div class="instruction">Combine both statements into one sentence using <b>By the time</b>:</div>
+            <ol>
+                <li>
+                    Event 1: Many passengers went to sleep in their cabins.<br>
+                    Event 2: The lookouts spotted the iceberg directly ahead.<br>
+                    &rarr; <strong>By the time</strong> <input type="text" style="width: 75%;" data-ans="the lookouts spotted the iceberg, many passengers had gone to sleep" placeholder="the lookouts spotted the iceberg, many passengers had gone to sleep..."> in their cabins.
+                </li>
+                <li>
+                    Event 1: Dr Ballard agreed to search for two military submarines.<br>
+                    Event 2: The US Navy funded his exploration technology.<br>
+                    &rarr; <strong>By the time</strong> <input type="text" style="width: 75%;" data-ans="the US Navy funded his technology, Dr Ballard had agreed to search for two submarines" placeholder="the US Navy funded his technology, Dr Ballard had agreed to search for two submarines...">.
+                </li>
+            </ol>
+            <button class="btn-check" onclick="checkTask(this)">Check Answers</button>
+            <div class="feedback-msg"></div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Task 2.3: Spot & Correct the Tense Mistake</div>
+            <div class="instruction">One tense form in each sentence is incorrect. Type the correct verb form in the box:</div>
+            <ol>
+                <li>When the alarms went off, the captain <u>already realized</u> the ship could not stay afloat. &rarr; Correct form: <input type="text" data-ans="had already realized" placeholder="..."></li>
+                <li>Ballard was stunned because no explorer <u>found</u> the intact stern section before 1985. &rarr; Correct form: <input type="text" data-ans="had found" placeholder="..."></li>
+                <li>Before he descended to the wreck in 2004, several documentaries <u>were filmed</u> at the site. &rarr; Correct form: <input type="text" data-ans="had been filmed" placeholder="..."></li>
+            </ol>
+            <button class="btn-check" onclick="checkTask(this)">Check Answers</button>
+            <div class="feedback-msg"></div>
+        </div>
+    </div>
+
+    <!-- PART 3: WRITING & NARRATIVE SYNTHESIS -->
+    <div class="section-card">
+        <div class="section-header">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+            <div class="section-title">Part 3: Narrative Reconstruction (Mini-Writing)</div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Task 3.1: The Story of an Artifact</div>
+            <div class="instruction">
+                In the lesson reading, Dr Ballard discovered: <em>a woman’s shoe, a child’s shoe, and unopened champagne bottles</em>.
+                <br>Choose <strong>one artifact</strong> and write a short narrative paragraph (60–80 words) describing what <strong>had happened</strong> before it ended up on the seabed.
+                <br><strong>Must include:</strong> at least two verbs in the <em>Past Perfect</em> (e.g., <em>had bought, had celebrated, had packed</em>) and one time connector (<em>by the time / before / already</em>).
+            </div>
+            <textarea id="hw-narrative" placeholder="Write your paragraph here. Progress is saved automatically..."></textarea>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Auto-save all fields in localStorage
+    document.addEventListener("DOMContentLoaded", function () {
+        const inputs = document.querySelectorAll("input[type='text'], textarea");
+        inputs.forEach((input, index) => {
+            const saved = localStorage.getItem("titanic_hw_field_" + index);
+            if (saved !== null) {
+                input.value = saved;
+            }
+            input.addEventListener("input", function () {
+                localStorage.setItem("titanic_hw_field_" + index, input.value);
+            });
+        });
+    });
+
+    // Check Task Logic
+    function checkTask(btn) {
+        const container = btn.closest(".exercise");
+        const inputs = container.querySelectorAll("input[type='text']");
+        const feedback = container.querySelector(".feedback-msg");
+        let allCorrect = true;
+        let filledCount = 0;
+
+        inputs.forEach(input => {
+            const expected = input.getAttribute("data-ans").trim().toLowerCase();
+            const val = input.value.trim().toLowerCase();
+
+            if (val.length > 0) filledCount++;
+
+            // Clean multiple whitespace
+            const cleanVal = val.replace(/\s+/g, " ");
+            const cleanExpected = expected.replace(/\s+/g, " ");
+
+            if (cleanVal === cleanExpected) {
+                input.classList.remove("incorrect");
+                input.classList.add("correct");
+            } else {
+                input.classList.remove("correct");
+                input.classList.add("incorrect");
+                allCorrect = false;
+            }
+        });
+
+        feedback.classList.add("show");
+        if (allCorrect && filledCount === inputs.length) {
+            feedback.className = "feedback-msg show good";
+            feedback.textContent = "Great job! All answers are correct.";
+        } else {
+            feedback.className = "feedback-msg show bad";
+            feedback.textContent = "Some answers are incorrect. Review the clues and try again!";
+        }
+    }
+</script>
+
+</body>
+</html>
