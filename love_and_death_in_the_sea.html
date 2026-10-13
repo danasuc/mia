@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life B1 • Unit 3C: Love and Death in the Sea</title>
+    <style>
+        :root {
+            --bg-color: #0b1120;
+            --card-bg: #161f30;
+            --subcard-bg: #1e293b;
+            --border-color: #334155;
+            --text-main: #cbd5e1;
+            --text-bright: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-cyan: #22d3ee;
+            --accent-purple: #c084fc;
+            --accent-amber: #f59e0b;
+            --accent-emerald: #3fb950;
+            --accent-crimson: #f85149;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .header-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 34px 24px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue), var(--accent-purple));
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .header-card h1 {
+            color: var(--text-bright);
+            font-size: 2.1rem;
+            margin-bottom: 8px;
+        }
+
+        .header-card p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        .svg-icon {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+            color: var(--accent-cyan);
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            color: var(--accent-cyan);
+            font-size: 1.35rem;
+            font-weight: 700;
+        }
+
+        .exercise {
+            background-color: var(--subcard-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .exercise-title {
+            color: var(--text-bright);
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .instruction {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+        }
+
+        .instruction em {
+            color: var(--accent-amber);
+            font-style: normal;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        li {
+            font-size: 0.95rem;
+        }
+
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .vocab-table th, .vocab-table td {
+            text-align: left;
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.93rem;
+        }
+
+        .vocab-table th {
+            color: var(--accent-blue);
+            background-color: rgba(56, 189, 248, 0.08);
+            font-weight: 600;
+        }
+
+        .vocab-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .word {
+            font-weight: 600;
+            color: var(--text-bright);
+        }
+
+        .text-box {
+            background-color: #0f172a;
+            border-left: 4px solid var(--accent-blue);
+            padding: 18px;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .text-box p {
+            margin-bottom: 12px;
+        }
+
+        .text-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .theory-box {
+            background: rgba(192, 132, 252, 0.07);
+            border: 1px solid rgba(192, 132, 252, 0.3);
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 10px;
+        }
+
+        .theory-box h4 {
+            color: #d8b4fe;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        input[type="text"] {
+            background-color: #0b1120;
+            border: 1px solid var(--border-color);
+            color: #f8fafc;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.92rem;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
+        }
+
+        input[type="text"].correct {
+            border-color: var(--accent-emerald) !important;
+            background-color: rgba(63, 185, 80, 0.12) !important;
+        }
+
+        input[type="text"].incorrect {
+            border-color: var(--accent-crimson) !important;
+            background-color: rgba(248, 81, 73, 0.12) !important;
+        }
+
+        textarea {
+            width: 100%;
+            background-color: #0b1120;
+            border: 1px solid var(--border-color);
+            color: #f8fafc;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.93rem;
+            font-family: inherit;
+            outline: none;
+            resize: vertical;
+            min-height: 100px;
+            line-height: 1.6;
+        }
+
+        textarea:focus {
+            border-color: var(--accent-cyan);
+        }
+
+        .btn-check {
+            align-self: flex-start;
+            background-color: #1e293b;
+            color: var(--text-bright);
+            border: 1px solid var(--border-color);
+            padding: 8px 18px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 4px;
+        }
+
+        .btn-check:hover {
+            background-color: #334155;
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        .feedback-msg {
+            font-size: 0.88rem;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .feedback-msg.show {
+            display: block;
+        }
+
+        .feedback-msg.good {
+            color: var(--accent-emerald);
+        }
+
+        .feedback-msg.bad {
+            color: var(--accent-crimson);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header-card">
+        <span class="badge">Intermediate B1 • Unit 3C</span>
+        <h1>Love and Death in the Sea</h1>
+        <p>Human Relationship with the Ocean • Marine Biology & Mediterranean Maritime Culture • Word Focus: <i>get</i> & Past Tenses</p>
+    </div>
+
+    <!-- 1. WARM-UP -->
+    <div class="section-card">
+        <div class="section-header">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <div class="section-title">1. Warm-Up</div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Exercise 1.1: Humans and the Elements</div>
+            <div class="instruction">Discuss these questions with your tutor:</div>
+            <ul>
+                <li>Where do you prefer to swim: a quiet pool, an open lake, or the sea? What risks exist in open waters?</li>
+                <li>In Mediterranean and coastal cultures, the sea is often seen both as a provider of life and a dangerous force. Have you ever experienced a sudden change in sea weather or strong currents?</li>
+                <li>Why do scientists and divers feel drawn to exploring the deep ocean despite the physical dangers?</li>
+            </ul>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Exercise 1.2: Reading the Conditions</div>
+            <div class="instruction">Match each maritime condition (1–3) with its natural consequence (a–c):</div>
+            <ol>
+                <li>A sudden offshore current &rarr; [ <input type="text" size="3" data-ans="b" placeholder="..."> ]</li>
+                <li>Breaking waves near the surf zone &rarr; [ <input type="text" size="3" data-ans="a" placeholder="..."> ]</li>
+                <li>Overconfidence in rough water (bravado) &rarr; [ <input type="text" size="3" data-ans="c" placeholder="..."> ]</li>
+            </ol>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;">
+                <b>a.</b> makes it difficult to breathe and pushes swimmers against the sand<br>
+                <b>b.</b> pulls a swimmer rapidly away from the safety of the beach<br>
+                <b>c.</b> leads to serious misjudgment of one's physical limits
+            </p>
+            <button class="btn-check" onclick="checkTask(this)">Check Answers</button>
+            <div class="feedback-msg"></div>
+        </div>
+    </div>
+
+    <!-- 2. VOCABULARY -->
+    <div class="section-card">
+        <div class="section-header">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+            <div class="section-title">2. Vocabulary: Marine Environment & Expressions</div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Key Expressions & Idiomatic Phrases</div>
+            <div class="instruction">Study the core terms from the account:</div>
+            <table class="vocab-table">
+                <thead>
+                    <tr>
+                        <th>Expression / Word</th>
+                        <th>Translation</th>
+                        <th>Definition / Meaning</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="word">a couple of times</td>
+                        <td>пару раз</td>
+                        <td>on several or two occasions</td>
+                    </tr>
+                    <tr>
+                        <td class="word">my heart races</td>
+                        <td>сердце бешено колотится</td>
+                        <td>I feel intense fear or panic</td>
+                    </tr>
+                    <tr>
+                        <td class="word">decide to call it a day</td>
+                        <td>решить закончить на сегодня</td>
+                        <td>decide to stop an activity and return</td>
+                    </tr>
+                    <tr>
+                        <td class="word">have a hard time</td>
+                        <td>испытывать трудности / мучиться</td>
+                        <td>experience significant difficulty or suffering</td>
+                    </tr>
+                    <tr>
+                        <td class="word">let oneself go</td>
+                        <td>расслабиться / перестать бороться</td>
+                        <td>stop struggling and allow the water/events to take over</td>
+                    </tr>
+                    <tr>
+                        <td class="word">learn one's lesson</td>
+                        <td>извлечь урок</td>
+                        <td>understand a mistake through a painful experience</td>
+                    </tr>
+                    <tr>
+                        <td class="word">bravado</td>
+                        <td>бравада, показная храбрость</td>
+                        <td>a show of bold courage that is often reckless</td>
+                    </tr>
+                    <tr>
+                        <td class="word">current</td>
+                        <td>течение</td>
+                        <td>a strong, continuous movement of water in a particular direction</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Vocab Practice 1 -->
+        <div class="exercise">
+            <div class="exercise-title">Exercise 2.1: Idiom Replacement</div>
+            <div class="instruction">Replace the underlined phrase with the correct expression from the table:</div>
+            <ol>
+                <li>Whenever he remembers that stormy swim, <u>he feels intense panic</u>. &rarr; <input type="text" data-ans="his heart races" placeholder="..."></li>
+                <li>The waves were getting dangerous, so the diver <u>decided to stop for the day</u>. &rarr; <input type="text" data-ans="decided to call it a day" placeholder="..."></li>
+                <li>She had <u>great difficulty</u> swimming back against the current. &rarr; had <input type="text" data-ans="a hard time" placeholder="..."></li>
+                <li>After surviving the undertow, the biologist truly <u>learned from his error</u>. &rarr; <input type="text" data-ans="learned his lesson" placeholder="..."></li>
+            </ol>
+            <button class="btn-check" onclick="checkTask(this)">Check Answers</button>
+            <div class="feedback-msg"></div>
+        </div>
+
+        <!-- Vocab Practice 2: Word Focus GET -->
+        <div class="exercise">
+            <div class="exercise-title">Exercise 2.2: Word Focus — The Meanings of "Get"</div>
+            <div class="instruction">Match each sentence with the meaning of <b>get</b>: <em>[arrive at / reach, become, receive / obtain, enter]</em></div>
+            <ol>
+                <li>I put on my mask and <b>got into</b> the water. &rarr; <input type="text" data-ans="enter" placeholder="..."></li>
+                <li>The storm <b>got</b> worse as the afternoon passed. &rarr; <input type="text" data-ans="become" placeholder="..."></li>
+                <li>I couldn't <b>get to</b> the shore because of the current. &rarr; <input type="text" data-ans="arrive at / reach|reach|arrive at" placeholder="..."></li>
+                <li>Humans <b>get</b> life, food, and oxygen from the sea. &rarr; <input type="text" data-ans="receive / obtain|receive|obtain" placeholder="..."></li>
+            </ol>
+            <button class="btn-check" onclick="checkTask(this)">Check Answers</button>
+            <div class="feedback-msg"></div>
+        </div>
+
+        <!-- Vocab Practice 3: Dependent Collocations -->
+        <div class="exercise">
+            <div class="exercise-title">Exercise 2.3: Ocean Collocations Gap-Fill</div>
+            <div class="instruction">Complete the sentences with: <em>[current, bravado, shore, surf]</em></div>
+            <ol>
+                <li>Swimming into the storm was an act of pure ___________ , not calculated courage. &rarr; <input type="text" data-ans="bravado" placeholder="..."></li>
+                <li>A powerful coastal ___________ carried the swimmer out beyond the bay. &rarr; <input type="text" data-ans="current" placeholder="..."></li>
+                <li>He was caught in the heavy ___________ zone where the waves break violently over sand. &rarr; <input type="text" data-ans="surf" placeholder="..."></li>
+                <li>Exhausted and bruised, he finally crawled out onto the rocky ___________ . &rarr; <input type="text" data-ans="shore" placeholder="..."></li>
+            </ol>
+            <button class="btn-check" onclick="checkTask(this)">Check Answers</button>
+            <div class="feedback-msg"></div>
+        </div>
+    </div>
+
+    <!-- 3. READING -->
+    <div class="section-card">
+        <div class="section-header">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.5 1 5.5v15.5c1.45-1.1 3.55-1.5 5.5-1.5s4.05.4 5.5 1.5c1.45-1.1 3.55-1.5 5.5-1.5 1.17 0 2.39.15 3.5.5V5z"/></svg>
+            <div class="section-title">3. Reading: Enric Sala's Encounter with the Mediterranean</div>
+        </div>
+
+        <div class="text-box">
+            <p><strong>A Decision of Bravado.</strong> The sea has nearly taken my life on a couple of occasions. It was never the ocean's fault; it was mine, for failing to respect its strength. In early summer 2008, I was staying on the Costa Brava in northeast Spain. The bay where I swam each morning was suddenly struck by an easterly gale. The clear water had turned into a churning grey stew of sand and foam. Yet, in a reckless moment of Catalan bravado, I put on my fins and entered the surf.</p>
+            
+            <p><strong>Trapped in the Current.</strong> Fighting against the waves, I swam for twenty minutes before realising the storm had worsened. I decided to call it a day and turn back, but the current was relentless. I attempted to body-surf toward the beach, but each wave pushed me under, grinding my body against the seabed. One wave threw me forward; the undertow pulled me back down. I lost my mask, snorkel, and one fin. I was trapped in the surf zone, unable to make any progress toward dry land.</p>
+
+            <p><strong>Letting Go and Surviving.</strong> When my strength failed completely, I made a critical decision: I stopped fighting and let the water take me. That choice allowed the incoming surge to carry me forward rather than exhaust me against it. Moments later, I found myself in shallow water, bruised and battered, and managed to crawl onto the sand. The entire ordeal had lasted only minutes, yet it reshaped my understanding of nature.</p>
+
+            <p><strong>The Ecologist's Perspective.</strong> As a marine ecologist, I know how much humanity receives from the ocean: oxygen, climate regulation, and sustenance. Yet we often forget that the sea does not exist to serve our pride. Some days the water welcomes us; other days it demands distance. Since that summer afternoon, I do not enter the sea when it shows anger, and every calm morning is a privilege.</p>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Exercise 3.1: Drawing Conclusions (Critical Thinking)</div>
+            <div class="instruction">Decide whether each statement is an explicit fact stated in the text (<b>F</b>) or a logical conclusion drawn by the reader (<b>C</b>):</div>
+            <ol>
+                <li>Enric Sala lost part of his diving equipment in the waves. &rarr; [ <input type="text" size="3" data-ans="f" placeholder="..."> ]</li>
+                <li>The Costa Brava can present serious hazards even for experienced swimmers. &rarr; [ <input type="text" size="3" data-ans="c" placeholder="..."> ]</li>
+                <li>He survived primarily because he stopped fighting against the waves. &rarr; [ <input type="text" size="3" data-ans="f" placeholder="..."> ]</li>
+                <li>The experience made him a more cautious and humble scientist. &rarr; [ <input type="text" size="3" data-ans="c" placeholder="..."> ]</li>
+            </ol>
+            <button class="btn-check" onclick="checkTask(this)">Check Answers</button>
+            <div class="feedback-msg"></div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Exercise 3.2: Factual Comprehension</div>
+            <div class="instruction">Answer based on the reading passage:</div>
+            <ol>
+                <li>What mistake did Enric Sala make before entering the water in 2008? &rarr; <input type="text" style="width: 80%;" data-ans="he failed to respect the sea|he showed bravado|he ignored the storm" placeholder="..."></li>
+                <li>Why does the author feel that the title "Love and Death in the Sea" is appropriate for his experience? &rarr; <input type="text" style="width: 80%;" data-ans="the sea gives life but can also kill|he loves the sea but almost died" placeholder="..."></li>
+            </ol>
+            <button class="btn-check" onclick="checkTask(this)">Check Answers</button>
+            <div class="feedback-msg"></div>
+        </div>
+    </div>
+
+    <!-- 4. GRAMMAR -->
+    <div class="section-card">
+        <div class="section-header">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.2 3.1.8-1.3-4.5-2.7V7z"/></svg>
+            <div class="section-title">4. Grammar: Narrative Tenses in Retrospect (Past Simple vs. Past Perfect)</div>
+        </div>
+
+        <div class="theory-box">
+            <h4>Grammar in Narrative Context: Looking Back at Decisions</h4>
+            <p>When recounting a dangerous experience or historical event, we use two main reference points in the past:</p>
+            <p><strong>1. Past Simple:</strong> Expresses sequential events that happened one after another in the main storyline.<br>
+            <em>I put on my fins, walked into the surf, and swam out.</em></p>
+            <p><strong>2. Past Perfect Simple (had + V3):</strong> Clarifies what had already taken place <b>before</b> that moment, explaining reasons and background circumstances.<br>
+            <em>The clear bay <b>had turned</b> into a grey stew before he decided to swim.</em><br>
+            <em>By the time he reached the shore, he <b>had lost</b> his snorkel and mask.</em></p>
+        </div>
+
+        <!-- Grammar Ex 1 -->
+        <div class="exercise">
+            <div class="exercise-title">Exercise 4.1: Chronology & Cause</div>
+            <div class="instruction">Choose the correct past form to show the true sequence of events:</div>
+            <ol>
+                <li>When Sala arrived at the beach, an easterly gale (<i>already started / had already started</i>). &rarr; <input type="text" data-ans="had already started" placeholder="..."></li>
+                <li>He realized his danger only after the weather (<i>got / had gotten / had got</i>) significantly worse. &rarr; <input type="text" data-ans="had got|had gotten" placeholder="..."></li>
+                <li>By the time he crawled out of the water, he (<i>lost / had lost</i>) his equipment. &rarr; <input type="text" data-ans="had lost" placeholder="..."></li>
+                <li>He (<i>never swam / had never swum</i>) in that bay during storms after that day. &rarr; <input type="text" data-ans="never swam" placeholder="..."></li>
+            </ol>
+            <button class="btn-check" onclick="checkTask(this)">Check Answers</button>
+            <div class="feedback-msg"></div>
+        </div>
+
+        <!-- Grammar Ex 2 -->
+        <div class="exercise">
+            <div class="exercise-title">Exercise 4.2: Historical Maritime Narrative (Henry Morgan & Shipwrecks)</div>
+            <div class="instruction">Complete the historical account using the <b>Past Simple</b> or <b>Past Perfect</b>:</div>
+            <p style="line-height: 2;">
+                Captain Henry Morgan was a 17th-century privateer. In 1671, his flagship <i>Satisfaction</i> <b>1.</b> <input type="text" size="10" data-ans="sank" placeholder="sink..."> off Panama. Centuries later, in 2010, marine archaeologists <b>2.</b> <input type="text" size="10" data-ans="discovered" placeholder="discover..."> iron cannons on the reef. They confirmed that the ship <b>3.</b> <input type="text" size="12" data-ans="had belonged" placeholder="belong..."> to Morgan because historical records showed he <b>4.</b> <input type="text" size="12" data-ans="had lost" placeholder="lose..."> several vessels during that specific assault.
+            </p>
+            <button class="btn-check" onclick="checkTask(this)">Check Answers</button>
+            <div class="feedback-msg"></div>
+        </div>
+
+        <!-- Grammar Ex 3 -->
+        <div class="exercise">
+            <div class="exercise-title">Exercise 4.3: Sentence Transformation with "By the time"</div>
+            <div class="instruction">Combine the two facts using <b>By the time</b> and the <b>Past Perfect</b>:</div>
+            <ol>
+                <li>Fact 1: The swimmer decided to turn back.<br>
+                Fact 2: The current carried him far out into the bay.<br>
+                &rarr; <strong>By the time the swimmer decided to turn back,</strong> <input type="text" style="width: 70%;" data-ans="the current had carried him far out|the current had already carried him far out" placeholder="the current had carried him far out...">.</li>
+                
+                <li>Fact 1: The archaeologists located the wreck.<br>
+                Fact 2: Wooden parts of the ship had dissolved over centuries.<br>
+                &rarr; <strong>By the time the archaeologists located the wreck,</strong> <input type="text" style="width: 70%;" data-ans="wooden parts of the ship had dissolved|the wooden parts had dissolved" placeholder="wooden parts of the ship had dissolved...">.</li>
+            </ol>
+            <button class="btn-check" onclick="checkTask(this)">Check Answers</button>
+            <div class="feedback-msg"></div>
+        </div>
+    </div>
+
+    <!-- 5. SPEAKING -->
+    <div class="section-card">
+        <div class="section-header">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+            <div class="section-title">5. Speaking</div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Task 5.1: The Three Decisions (Analysis)</div>
+            <div class="instruction">Work with your tutor to analyze Enric Sala's three choices during the swim:</div>
+            <ul>
+                <li><strong>Decision 1:</strong> Going into the water despite visible storm warnings. What motivated him (pride, curiosity, habit)?</li>
+                <li><strong>Decision 2:</strong> Trying to fight back and body-surf to the shore. Why did this worsen the situation?</li>
+                <li><strong>Decision 3:</strong> Letting himself go and trusting the water. Why is this counterintuitive but effective in an undertow?</li>
+            </ul>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Task 5.2: Learning a Lesson from Nature or Travel</div>
+            <div class="instruction">Reflect on an incident where you or someone you know had to "learn a lesson" from an unpredictable situation:</div>
+            <ul>
+                <li>Describe where and when it happened. What had you planned beforehand?</li>
+                <li>What unexpected difficulty occurred, and how did your actions resolve it?</li>
+                <li>How has that experience changed your habits or attitude since then?</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const fields = document.querySelectorAll("input[type='text'], textarea");
+        fields.forEach((f, idx) => {
+            const saved = localStorage.getItem("life_3c_field_" + idx);
+            if (saved !== null) f.value = saved;
+            f.addEventListener("input", () => {
+                localStorage.setItem("life_3c_field_" + idx, f.value);
+            });
+        });
+    });
+
+    function cleanStr(s) {
+        return s.toLowerCase()
+                .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, "")
+                .replace(/\s+/g, " ")
+                .trim();
+    }
+
+    function checkTask(btn) {
+        const container = btn.closest(".exercise");
+        const inputs = container.querySelectorAll("input[type='text']");
+        const feedback = container.querySelector(".feedback-msg");
+        let allOk = true;
+        let count = 0;
+
+        inputs.forEach(input => {
+            const possible = input.getAttribute("data-ans").split("|").map(cleanStr);
+            const val = cleanStr(input.value);
+            if (val.length > 0) count++;
+
+            if (possible.includes(val)) {
+                input.classList.remove("incorrect");
+                input.classList.add("correct");
+            } else {
+                input.classList.remove("correct");
+                input.classList.add("incorrect");
+                allOk = false;
+            }
+        });
+
+        feedback.classList.add("show");
+        if (allOk && count === inputs.length) {
+            feedback.className = "feedback-msg show good";
+            feedback.textContent = "All answers are correct.";
+        } else {
+            feedback.className = "feedback-msg show bad";
+            feedback.textContent = "Some answers are incorrect or empty. Please check your spelling and try again.";
+        }
+    }
+</script>
+
+</body>
+</html>
