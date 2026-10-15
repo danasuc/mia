@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Intermediate • Units 3D & 3E: Storytelling & Narratives</title>
+    <style>
+        :root {
+            --bg-color: #0b1120;
+            --card-bg: #161f30;
+            --subcard-bg: #1e293b;
+            --border-color: #334155;
+            --text-main: #cbd5e1;
+            --text-bright: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-cyan: #22d3ee;
+            --accent-purple: #c084fc;
+            --accent-amber: #f59e0b;
+            --accent-emerald: #3fb950;
+            --accent-crimson: #f85149;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .header-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 34px 24px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue), var(--accent-purple));
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .header-card h1 {
+            color: var(--text-bright);
+            font-size: 2.1rem;
+            margin-bottom: 8px;
+        }
+
+        .header-card p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        .svg-icon {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+            color: var(--accent-cyan);
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            color: var(--accent-cyan);
+            font-size: 1.35rem;
+            font-weight: 700;
+        }
+
+        .exercise {
+            background-color: var(--subcard-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .exercise-title {
+            color: var(--text-bright);
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .instruction {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+        }
+
+        .instruction em {
+            color: var(--accent-amber);
+            font-style: normal;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        li {
+            font-size: 0.95rem;
+        }
+
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .vocab-table th, .vocab-table td {
+            text-align: left;
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.93rem;
+        }
+
+        .vocab-table th {
+            color: var(--accent-blue);
+            background-color: rgba(56, 189, 248, 0.08);
+            font-weight: 600;
+        }
+
+        .vocab-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .word {
+            font-weight: 600;
+            color: var(--text-bright);
+        }
+
+        .text-box {
+            background-color: #0f172a;
+            border-left: 4px solid var(--accent-blue);
+            padding: 18px;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .text-box p {
+            margin-bottom: 12px;
+        }
+
+        .text-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .theory-box {
+            background: rgba(192, 132, 252, 0.07);
+            border: 1px solid rgba(192, 132, 252, 0.3);
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 10px;
+        }
+
+        .theory-box h4 {
+            color: #d8b4fe;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        input[type="text"] {
+            background-color: #0b1120;
+            border: 1px solid var(--border-color);
+            color: #f8fafc;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.92rem;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
+        }
+
+        input[type="text"].correct {
+            border-color: var(--accent-emerald) !important;
+            background-color: rgba(63, 185, 80, 0.12) !important;
+        }
+
+        input[type="text"].incorrect {
+            border-color: var(--accent-crimson) !important;
+            background-color: rgba(248, 81, 73, 0.12) !important;
+        }
+
+        textarea {
+            width: 100%;
+            background-color: #0b1120;
+            border: 1px solid var(--border-color);
+            color: #f8fafc;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.93rem;
+            font-family: inherit;
+            outline: none;
+            resize: vertical;
+            min-height: 95px;
+            line-height: 1.6;
+        }
+
+        textarea:focus {
+            border-color: var(--accent-cyan);
+        }
+
+        .btn-check {
+            align-self: flex-start;
+            background-color: #1e293b;
+            color: var(--text-bright);
+            border: 1px solid var(--border-color);
+            padding: 8px 18px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 4px;
+        }
+
+        .btn-check:hover {
+            background-color: #334155;
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        .feedback-msg {
+            font-size: 0.88rem;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .feedback-msg.show {
+            display: block;
+        }
+
+        .feedback-msg.good {
+            color: var(--accent-emerald);
+        }
+
+        .feedback-msg.bad {
+            color: var(--accent-crimson);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header-card">
+        <span class="badge">Intermediate B1 • Units 3D & 3E</span>
+        <h1>No Way! Telling Stories & Narrative Blog Posts</h1>
+        <p>Story Openers, Time Sequences & Vivid Descriptive Language • Grammar: Narrative Tenses in Storytelling</p>
+    </div>
+
+    <!-- 1. WARM UP -->
+    <div class="section-card">
+        <div class="section-header">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            <div class="section-title">1. Warm-Up</div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Exercise 1.1: Storytelling Habits</div>
+            <div class="instruction">Discuss these questions with your tutor using 2–3 full sentences:</div>
+            <ul>
+                <li>When you are in a group of friends, do you prefer to listen to others telling stories, or are you usually the one sharing funny personal experiences?</li>
+                <li>Do you ever exaggerate details to make an anecdote sound more entertaining? Why or why not?</li>
+                <li>What makes a personal story memorable: unexpected plot twists, humorous characters, or vivid descriptive language?</li>
+            </ul>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Exercise 1.2: Classifying Story Expressions</div>
+            <div class="instruction">Classify each expression as <b>B</b> (Beginning a story) or <b>S</b> (Sequencing events):</div>
+            <ol>
+                <li>"Did I ever tell you about...?" &rarr; [ <input type="text" size="4" data-ans="b" placeholder="..."> ]</li>
+                <li>"All of a sudden..." &rarr; [ <input type="text" size="4" data-ans="s" placeholder="..."> ]</li>
+                <li>"I remember once..." &rarr; [ <input type="text" size="4" data-ans="b" placeholder="..."> ]</li>
+                <li>"The next thing was..." &rarr; [ <input type="text" size="4" data-ans="s" placeholder="..."> ]</li>
+                <li>"You’ll never believe what happened once..." &rarr; [ <input type="text" size="4" data-ans="b" placeholder="..."> ]</li>
+                <li>"Immediately afterwards..." &rarr; [ <input type="text" size="4" data-ans="s" placeholder="..."> ]</li>
+            </ol>
+            <button class="btn-check" onclick="checkTask(this)">Check Answers</button>
+            <div class="feedback-msg"></div>
+        </div>
+    </div>
+
+    <!-- 2. VOCABULARY -->
+    <div class="section-card">
+        <div class="section-header">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+            <div class="section-title">2. Vocabulary: Story Linkers & Vivid Descriptions</div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Vocabulary Reference Table</div>
+            <table class="vocab-table">
+                <thead>
+                    <tr>
+                        <th>Word / Phrase</th>
+                        <th>Function / Type</th>
+                        <th>Definition / Usage</th>
+                        <th>Russian Translation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="word">all of a sudden</td>
+                        <td>narrative phrase</td>
+                        <td>happening unexpectedly and quickly</td>
+                        <td>внезапно, вдруг</td>
+                    </tr>
+                    <tr>
+                        <td class="word">the next thing was</td>
+                        <td>narrative phrase</td>
+                        <td>introducing an immediate subsequent action</td>
+                        <td>и тут / следующим делом</td>
+                    </tr>
+                    <tr>
+                        <td class="word">pour with rain</td>
+                        <td>verb phrase</td>
+                        <td>to rain heavily without stopping</td>
+                        <td>лить как из ведра</td>
+                    </tr>
+                    <tr>
+                        <td class="word">packed</td>
+                        <td>adjective</td>
+                        <td>completely full of people (e.g. a packed beach)</td>
+                        <td>битком набитый людьми</td>
+                    </tr>
+                    <tr>
+                        <td class="word">rush (down to)</td>
+                        <td>verb</td>
+                        <td>to run or move with great urgency</td>
+                        <td>броситься, ринуться</td>
+                    </tr>
+                    <tr>
+                        <td class="word">clutch</td>
+                        <td>verb</td>
+                        <td>to hold something tightly in one's hand</td>
+                        <td>сжимать, крепко держать</td>
+                    </tr>
+                    <tr>
+                        <td class="word">wash up</td>
+                        <td>phrasal verb</td>
+                        <td>to be carried onto the shore by waves</td>
+                        <td>быть выброшенным на берег</td>
+                    </tr>
+                    <tr>
+                        <td class="word">collapse</td>
+                        <td>verb</td>
+                        <td>to fall down suddenly from complete exhaustion</td>
+                        <td>рухнуть от усталости</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Vocab 1 -->
+        <div class="exercise">
+            <div class="exercise-title">Exercise 2.1: Narrative Linkers Gap-Fill</div>
+            <div class="instruction">Complete the sentences using: <em>[all of a sudden, immediately, during, the next thing was]</em></div>
+            <ol>
+                <li>We were driving along the coastal road when, <input type="text" data-ans="all of a sudden" placeholder="...">, a thick fog covered the sea.</li>
+                <li><input type="text" data-ans="during" placeholder="..."> the night, the wind blew so violently that the garden fence broke.</li>
+                <li>I slipped on the wet rock, and <input type="text" data-ans="the next thing was" placeholder="...">, I fell into the shallow water.</li>
+                <li>As soon as the ship grounded on the sandbar, the crew <input type="text" data-ans="immediately" placeholder="..."> contacted the coastguard.</li>
+            </ol>
+            <button class="btn-check" onclick="checkTask(this)">Check Answers</button>
+            <div class="feedback-msg"></div>
+        </div>
+
+        <!-- Vocab 2 -->
+        <div class="exercise">
+            <div class="exercise-title">Exercise 2.2: Upgrading Basic Verbs with Vivid Vocabulary</div>
+            <div class="instruction">Replace the underlined basic words using: <em>[pouring with rain, packed, rushed, clutching, collapsed]</em></div>
+            <ol>
+                <li>It was <u>raining heavily</u> throughout Sunday morning. &rarr; It was <input type="text" data-ans="pouring with rain" placeholder="..."> throughout Sunday morning.</li>
+                <li>When the sun finally came out, the coastal promenade was <u>full of people</u>. &rarr; The coastal promenade was <input type="text" data-ans="packed" placeholder="...">.</li>
+                <li>The children <u>ran quickly</u> down to the water’s edge. &rarr; The children <input type="text" data-ans="rushed" placeholder="..."> down to the water’s edge.</li>
+                <li>Beachcombers were walking along the shoreline, <u>holding tightly</u> unusual items. &rarr; Beachcombers were <input type="text" data-ans="clutching" placeholder="..."> unusual items.</li>
+                <li>After walking twenty miles along the coastal trail, we <u>fell down exhausted</u> onto the sand. &rarr; We <input type="text" data-ans="collapsed" placeholder="..."> onto the sand.</li>
+            </ol>
+            <button class="btn-check" onclick="checkTask(this)">Check Answers</button>
+            <div class="feedback-msg"></div>
+        </div>
+
+        <!-- Vocab 3 -->
+        <div class="exercise">
+            <div class="exercise-title">Exercise 2.3: Context Collocations</div>
+            <div class="instruction">Match the verbs (1–4) with their natural objects: <em>[a funny anecdote, its cargo in a gale, out to sea in disbelief, on the sandy shore]</em></div>
+            <ol>
+                <li>lose &rarr; <input type="text" data-ans="its cargo in a gale" placeholder="..."></li>
+                <li>stare &rarr; <input type="text" data-ans="out to sea in disbelief" placeholder="..."></li>
+                <li>wash up &rarr; <input type="text" data-ans="on the sandy shore" placeholder="..."></li>
+                <li>tell &rarr; <input type="text" data-ans="a funny anecdote" placeholder="..."></li>
+            </ol>
+            <button class="btn-check" onclick="checkTask(this)">Check Answers</button>
+            <div class="feedback-msg"></div>
+        </div>
+    </div>
+
+    <!-- 3. READING -->
+    <div class="section-card">
+        <div class="section-header">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+            <div class="section-title">3. Reading: The Calm After the Storm</div>
+        </div>
+
+        <div class="text-box">
+            <p><strong>Paragraph 1: Trapped Indoors by the Weather.</strong> It had been pouring with rain all weekend, so our family spent nearly forty-eight hours indoors trying to entertain the children. Board games and drawing had lost their charm by Sunday afternoon, and everyone was desperate for fresh air. Then, unexpectedly, the storm clouds broke, and warm afternoon sunshine lit up the bay. We immediately grabbed our beach gear, jumped into the car, and headed down to the sea.</p>
+
+            <p><strong>Paragraph 2: An Astonishing Sight at the Shore.</strong> When we arrived, it was obvious that dozens of local residents had had the exact same idea; the shoreline was completely packed. However, nobody was swimming or sunbathing. Instead, hundreds of people were crowded at the water’s edge, staring out to sea in amazement and picking odd items out of the receding tide.</p>
+
+            <p><strong>Paragraph 3: The Cargo Mystery Revealed.</strong> My kids rushed down to the foam with excitement. It turned out that a massive commercial container ship had lost part of its cargo during Saturday night's storm. Five shipping containers of brand-new trainers had burst open against the reef, and thousands of floating athletic shoes had washed up along the sand.</p>
+
+            <p><strong>Paragraph 4: The Great Shoe Search.</strong> What followed was one of the strangest scenes our coastal town had ever witnessed. Everyone was wandering along the beach, clutching odd left or right shoes and shouting out sizes, searching for someone who held the matching pair to make a set. A frustrating weekend that started with dreary rain ended up as an unforgettable communal adventure.</p>
+        </div>
+
+        <!-- Reading 1 -->
+        <div class="exercise">
+            <div class="exercise-title">Exercise 3.1: Chronological Order of Events</div>
+            <div class="instruction">Put the events in order from 1 to 4:</div>
+            <ol>
+                <li>The family drove down to the beach after the rain stopped. &rarr; Order: [ <input type="text" size="3" data-ans="2" placeholder="..."> ]</li>
+                <li>A container ship lost its cargo of trainers during a gale. &rarr; Order: [ <input type="text" size="3" data-ans="1" placeholder="..."> ]</li>
+                <li>Crowds of people began searching for matching shoe pairs along the sand. &rarr; Order: [ <input type="text" size="3" data-ans="4" placeholder="..."> ]</li>
+                <li>The family arrived at the coast and found a packed beach where crowds were staring into the surf. &rarr; Order: [ <input type="text" size="3" data-ans="3" placeholder="..."> ]</li>
+            </ol>
+            <button class="btn-check" onclick="checkTask(this)">Check Answers</button>
+            <div class="feedback-msg"></div>
+        </div>
+
+        <!-- Reading 2 -->
+        <div class="exercise">
+            <div class="exercise-title">Exercise 3.2: Short Reading Comprehension Questions</div>
+            <div class="instruction">Answer the questions according to the text:</div>
+            <ol>
+                <li>Why was nobody swimming or sunbathing on the beach despite the sunshine? &rarr; <input type="text" style="width: 75%;" data-ans="they were looking at washed up cargo|they were picking up shoes|people were picking items out of the tide" placeholder="..."></li>
+                <li>What specific cargo was washed ashore when the steel containers broke open? &rarr; <input type="text" style="width: 75%;" data-ans="trainers|shoes|athletic shoes" placeholder="..."></li>
+            </ol>
+            <button class="btn-check" onclick="checkTask(this)">Check Answers</button>
+            <div class="feedback-msg"></div>
+        </div>
+    </div>
+
+    <!-- 4. GRAMMAR -->
+    <div class="section-card">
+        <div class="section-header">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.2 3.1.8-1.3-4.5-2.7V7z"/></svg>
+            <div class="section-title">4. Grammar: Narrative Tenses in Storytelling</div>
+        </div>
+
+        <div class="theory-box">
+            <h4>Narrative Tenses Rules: Past Simple, Continuous & Perfect</h4>
+            <p>When telling a story or writing a blog post, we combine three past tenses:</p>
+            <p>• <b>Past Simple:</b> For consecutive completed actions in chronological order.<br>
+            <em>We <b>grabbed</b> our gear, <b>jumped</b> into the car, and <b>drove</b> to the beach.</em></p>
+            <p>• <b>Past Continuous:</b> For continuous background actions happening at a specific moment.<br>
+            <em>The rain <b>was pouring</b>, and hundreds of people <b>were staring</b> out to sea.</em></p>
+            <p>• <b>Past Perfect Simple (had + V3):</b> For an earlier event that happened <b>before</b> the main storyline.<br>
+            <em>A cargo ship <b>had lost</b> its containers before the shoes washed ashore.</em></p>
+        </div>
+
+        <!-- Grammar 1 -->
+        <div class="exercise">
+            <div class="exercise-title">Exercise 4.1: Verb Forms in Context</div>
+            <div class="instruction">Put the verbs in brackets into the correct narrative tense (Past Simple, Past Continuous, or Past Perfect):</div>
+            <ol>
+                <li>While we <input type="text" data-ans="were walking" placeholder="walk..."> along the shore, the sun finally broke through the clouds.</li>
+                <li>They discovered that several shipping containers <input type="text" data-ans="had fallen" placeholder="fall..."> off the ship during Saturday's gale.</li>
+                <li>I <input type="text" data-ans="picked up" placeholder="pick up..."> a single left trainer from the foam and realised it had no matching pair.</li>
+                <li>Everyone on the promenade was laughing because they <input type="text" data-ans="had never seen" placeholder="never / see..."> such a strange spectacle before.</li>
+            </ol>
+            <button class="btn-check" onclick="checkTask(this)">Check Answers</button>
+            <div class="feedback-msg"></div>
+        </div>
+
+        <!-- Grammar 2 -->
+        <div class="exercise">
+            <div class="exercise-title">Exercise 4.2: Sentence Combining with Past Perfect</div>
+            <div class="instruction">Combine the two sentences using the word in brackets and the Past Perfect:</div>
+            <ol>
+                <li>
+                    The vessel lost its cargo in the storm. Later, shoes washed up on the sand. (<b>AFTER</b>)<br>
+                    &rarr; After the vessel <input type="text" style="width: 70%;" data-ans="had lost its cargo in the storm, shoes washed up on the sand|had lost its cargo, shoes washed up on the sand" placeholder="had lost its cargo...">.
+                </li>
+                <li>
+                    The family arrived at the coast. Local residents already collected all the best items. (<b>BY THE TIME</b>)<br>
+                    &rarr; By the time the family arrived at the coast, local residents <input type="text" style="width: 70%;" data-ans="had already collected all the best items|had already collected the best items" placeholder="had already collected...">.
+                </li>
+            </ol>
+            <button class="btn-check" onclick="checkTask(this)">Check Answers</button>
+            <div class="feedback-msg"></div>
+        </div>
+
+        <!-- Grammar 3 -->
+        <div class="exercise">
+            <div class="exercise-title">Exercise 4.3: Spot and Correct the Tense Mistake</div>
+            <div class="instruction">Identify the incorrect verb and write only the corrected form:</div>
+            <ol>
+                <li>While I looked out of the kitchen window, a strange green bird landed on the sink. &rarr; <input type="text" data-ans="was looking" placeholder="..."></li>
+                <li>By Sunday afternoon, the children were finishing all their indoor board games. &rarr; <input type="text" data-ans="had finished" placeholder="..."></li>
+            </ol>
+            <button class="btn-check" onclick="checkTask(this)">Check Answers</button>
+            <div class="feedback-msg"></div>
+        </div>
+    </div>
+
+    <!-- 5. SPEAKING -->
+    <div class="section-card">
+        <div class="section-header">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+            <div class="section-title">5. Speaking: Storytelling & Personal Anecdotes</div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Task 5.1: Two Truths and a Lie (Anecdote Game)</div>
+            <div class="instruction">Prepare three brief anecdotes about surprising or embarrassing events that happened to you or people you know (two true stories and one invented lie):</div>
+            <ul>
+                <li>Use standard storytelling openers: <em>"Did I ever tell you about...?", "I remember once...", "All of a sudden..."</em></li>
+                <li>Tell all three stories to your tutor. Your tutor must guess which anecdote is untrue.</li>
+            </ul>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Task 5.2: The Unforgettable Weekend (Blog Narrative)</div>
+            <div class="instruction">Deliver a 2-minute spoken narrative describing a memorable trip or weekend:</div>
+            <ul>
+                <li><strong>Background:</strong> Describe what the weather was like and what you were originally planning to do.</li>
+                <li><strong>Inciting incident:</strong> Introduce the unexpected complication or surprise using <em>"All of a sudden..."</em> or <em>"The next thing was..."</em>.</li>
+                <li><strong>Resolution:</strong> Conclude by explaining how the situation ended and how you felt (e.g. <em>exhausted, relieved, delighted</em>).</li>
+            </ul>
+            <textarea id="speaking_story_notes" placeholder="Tutor feedback and vocabulary notes..."></textarea>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // LocalStorage Auto-Save
+    document.addEventListener("DOMContentLoaded", () => {
+        const fields = document.querySelectorAll("input[type='text'], textarea");
+        fields.forEach((field, idx) => {
+            const saved = localStorage.getItem("story_3de_field_" + idx);
+            if (saved !== null) field.value = saved;
+            field.addEventListener("input", () => {
+                localStorage.setItem("story_3de_field_" + idx, field.value);
+            });
+        });
+    });
+
+    function cleanStr(s) {
+        return s.toLowerCase()
+                .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, "")
+                .replace(/\s+/g, " ")
+                .trim();
+    }
+
+    // Input Validation
+    function checkTask(btn) {
+        const container = btn.closest(".exercise");
+        const inputs = container.querySelectorAll("input[type='text']");
+        const feedback = container.querySelector(".feedback-msg");
+        let allOk = true;
+        let count = 0;
+
+        inputs.forEach(input => {
+            const possible = (input.getAttribute("data-ans") || "").split("|").map(cleanStr);
+            const val = cleanStr(input.value);
+            if (val.length > 0) count++;
+
+            if (possible.includes(val)) {
+                input.classList.remove("incorrect");
+                input.classList.add("correct");
+            } else {
+                input.classList.remove("correct");
+                input.classList.add("incorrect");
+                allOk = false;
+            }
+        });
+
+        feedback.classList.add("show");
+        if (allOk && count === inputs.length) {
+            feedback.className = "feedback-msg show good";
+            feedback.textContent = "All answers are correct! Excellent job.";
+        } else {
+            feedback.className = "feedback-msg show bad";
+            feedback.textContent = "Some answers are incorrect or missing. Check your spelling and try again.";
+        }
+    }
+</script>
+
+</body>
+</html>
