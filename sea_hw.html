@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life B1 • Homework & Vocabulary Trainer: Love and Death in the Sea</title>
+    <style>
+        :root {
+            --bg-color: #0b1120;
+            --card-bg: #161f30;
+            --subcard-bg: #1e293b;
+            --border-color: #334155;
+            --text-main: #cbd5e1;
+            --text-bright: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-cyan: #22d3ee;
+            --accent-purple: #c084fc;
+            --accent-amber: #f59e0b;
+            --accent-emerald: #3fb950;
+            --accent-crimson: #f85149;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+        }
+
+        .header-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 28px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue), var(--accent-purple));
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        h1 {
+            color: var(--text-bright);
+            font-size: 2rem;
+            margin-bottom: 6px;
+        }
+
+        .header-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .tab-bar {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .tab-btn {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-blue);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 9px 20px;
+            border-radius: 24px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            background: var(--accent-blue);
+            color: #0b1120;
+            font-weight: 700;
+            border-color: var(--accent-blue);
+        }
+
+        .tab-content {
+            display: none;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .tab-content.active {
+            display: flex;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 26px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .section-title {
+            color: var(--accent-cyan);
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .exercise {
+            background-color: var(--subcard-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .exercise-title {
+            color: var(--text-bright);
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .instruction {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+        }
+
+        .instruction em {
+            color: var(--accent-amber);
+            font-style: normal;
+        }
+
+        ol, ul {
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        li {
+            font-size: 0.95rem;
+        }
+
+        input[type="text"] {
+            background-color: #0b1120;
+            border: 1px solid var(--border-color);
+            color: #f8fafc;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.92rem;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+        }
+
+        input[type="text"].correct {
+            border-color: var(--accent-emerald) !important;
+            background-color: rgba(63, 185, 80, 0.12) !important;
+        }
+
+        input[type="text"].incorrect {
+            border-color: var(--accent-crimson) !important;
+            background-color: rgba(248, 81, 73, 0.12) !important;
+        }
+
+        textarea {
+            width: 100%;
+            background-color: #0b1120;
+            border: 1px solid var(--border-color);
+            color: #f8fafc;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            outline: none;
+            min-height: 110px;
+            font-family: inherit;
+            line-height: 1.6;
+        }
+
+        textarea:focus {
+            border-color: var(--accent-blue);
+        }
+
+        .btn-check {
+            align-self: flex-start;
+            background-color: var(--card-bg);
+            color: var(--text-bright);
+            border: 1px solid var(--border-color);
+            padding: 8px 18px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 4px;
+        }
+
+        .btn-check:hover {
+            background-color: #2b394e;
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        .feedback-msg {
+            font-size: 0.88rem;
+            display: none;
+        }
+
+        .feedback-msg.show {
+            display: block;
+        }
+
+        .feedback-msg.good {
+            color: var(--accent-emerald);
+        }
+
+        .feedback-msg.bad {
+            color: var(--accent-crimson);
+        }
+
+        /* Flashcard Styles */
+        .progress-box {
+            background: var(--subcard-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 14px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .progress-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+
+        .bar-outer {
+            width: 100%;
+            height: 8px;
+            background: #0b1120;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .bar-inner {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-emerald));
+            transition: width 0.3s ease;
+        }
+
+        .card-stage {
+            perspective: 1200px;
+            width: 100%;
+            height: 310px;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+        }
+
+        .card-inner.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: var(--card-bg);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            background: #111e33;
+            border-color: #233e66;
+        }
+
+        .card-word {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-bright);
+            margin-bottom: 8px;
+        }
+
+        .card-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent-blue);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .card-translation {
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--accent-emerald);
+            margin-bottom: 12px;
+        }
+
+        .card-example {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            font-style: italic;
+            background: rgba(0,0,0,0.3);
+            padding: 10px 16px;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-cyan);
+            max-width: 90%;
+        }
+
+        .card-controls {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-card {
+            background: var(--subcard-bg);
+            color: var(--text-bright);
+            border: 1px solid var(--border-color);
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-card-learn {
+            background: rgba(248, 81, 73, 0.12);
+            color: #ff7b72;
+            border-color: rgba(248, 81, 73, 0.4);
+        }
+
+        .btn-card-know {
+            background: rgba(63, 185, 80, 0.15);
+            color: #3fb950;
+            border-color: rgba(63, 185, 80, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header-card">
+        <span class="badge">Independent Practice • Life Intermediate Unit 3C</span>
+        <h1>Love and Death in the Sea: Homework & Vocabulary Trainer</h1>
+        <p>Marine Exploration, Narrative Tenses (Past Simple vs. Past Perfect), and Idiomatic Expressions.<br>All progress and answers are saved automatically in your browser.</p>
+        <div class="tab-bar">
+            <button class="tab-btn active" onclick="switchTab('trainer')">📇 Flashcard Trainer</button>
+            <button class="tab-btn" onclick="switchTab('homework')">📝 Homework Tasks</button>
+        </div>
+    </div>
+
+    <!-- TAB 1: TRAINER -->
+    <div id="tab-trainer" class="tab-content active">
+        <div class="progress-box">
+            <div class="progress-meta">
+                <span id="counterText">Card 1 of 12</span>
+                <span id="masteredText">Mastered: 0 / 12</span>
+            </div>
+            <div class="bar-outer">
+                <div class="bar-inner" id="progressBar"></div>
+            </div>
+        </div>
+
+        <div class="card-stage" onclick="flipCard()">
+            <div class="card-inner" id="cardInner">
+                <div class="card-face card-front">
+                    <span class="card-category" id="cardCategory">Category</span>
+                    <div class="card-word" id="cardWord">discovery</div>
+                    <span style="font-size: 0.82rem; color: var(--text-muted); margin-top: 10px;">💡 Click the card to flip</span>
+                </div>
+                <div class="card-face card-back">
+                    <div class="card-translation" id="cardTranslation">открытие, находка</div>
+                    <div class="card-example" id="cardExample">The discovery of the ancient shipwreck astonished marine archaeologists.</div>
+                    <span style="font-size: 0.82rem; color: var(--text-muted); margin-top: 10px;">🔄 Click to flip back</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-controls">
+            <button class="btn-card" onclick="prevCard()">← Previous</button>
+            <button class="btn-card btn-card-learn" onclick="markCard(false)">❌ Review Again</button>
+            <button class="btn-card btn-card-know" onclick="markCard(true)">✅ I Know This!</button>
+            <button class="btn-card" onclick="nextCard()">Next →</button>
+        </div>
+    </div>
+
+    <!-- TAB 2: HOMEWORK -->
+    <div id="tab-homework" class="tab-content">
+
+        <!-- Part 1: Vocabulary & Collocations -->
+        <div class="section-card">
+            <div class="section-title">Part 1: Marine Vocabulary & Idiomatic Expressions</div>
+
+            <div class="exercise">
+                <div class="exercise-title">Task 1.1: Precision Vocabulary Gap-Fill</div>
+                <div class="instruction">Complete the sentences with words from the box: <em>[discovery, humble, bravado, current, seabed, shore]</em></div>
+                <ol>
+                    <li>Almost drowning in the stormy sea taught the marine ecologist to remain deeply <input type="text" data-answers="humble" placeholder="..."> before nature.</li>
+                    <li>Swimming into the gale was an act of reckless <input type="text" data-answers="bravado" placeholder="..."> rather than calculated bravery.</li>
+                    <li>The deep-sea robot made an extraordinary <input type="text" data-answers="discovery" placeholder="..."> of 17th-century cannons lying on the reef.</li>
+                    <li>A powerful rip <input type="text" data-answers="current" placeholder="..."> dragged the swimmer away from safety within minutes.</li>
+                    <li>Crashing waves forced him down, scraping his knees against the rocky <input type="text" data-answers="seabed" placeholder="...">.</li>
+                    <li>Exhausted and bruised, he managed to crawl out onto the dry sandy <input type="text" data-answers="shore" placeholder="...">.</li>
+                </ol>
+                <button class="btn-check" onclick="checkExercise(this)">Check Answers</button>
+                <div class="feedback-msg"></div>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Task 1.2: Idiomatic Phrases Replacement</div>
+                <div class="instruction">Replace the underlined phrase with the correct expression: <em>[called it a day, had a hard time, his heart races, let himself go, learned his lesson]</em></div>
+                <ol>
+                    <li>Every time he remembers that violent undertow, <u>he feels intense panic and fear</u>. &rarr; Every time he remembers, <input type="text" data-answers="his heart races" placeholder="...">.</li>
+                    <li>The waves were growing higher, so the diver <u>decided to stop swimming and go home</u>. &rarr; The diver <input type="text" data-answers="called it a day|decided to call it a day" placeholder="...">.</li>
+                    <li>The swimmer <u>experienced immense difficulty and struggled</u> to breathe in the surf. &rarr; The swimmer <input type="text" data-answers="had a hard time" placeholder="..."> trying to breathe.</li>
+                    <li>Realising he could not beat the waves, he <u>stopped fighting and allowed the water to carry him</u>. &rarr; He <input type="text" data-answers="let himself go" placeholder="...">.</li>
+                    <li>After that terrifying experience on the Costa Brava, he truly <u>understood his mistake</u>. &rarr; He finally <input type="text" data-answers="learned his lesson|learnt his lesson" placeholder="...">.</li>
+                </ol>
+                <button class="btn-check" onclick="checkExercise(this)">Check Answers</button>
+                <div class="feedback-msg"></div>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Task 1.3: Word Focus — Multiple Meanings of "Get"</div>
+                <div class="instruction">Identify the meaning of <b>get</b> in each sentence: <em>[enter, become, reach / arrive at, receive / obtain]</em></div>
+                <ol>
+                    <li>I put on my mask and <b>got into</b> the stormy water. &rarr; <input type="text" data-answers="enter" placeholder="..."></li>
+                    <li>The weather <b>got</b> significantly worse as the afternoon passed. &rarr; <input type="text" data-answers="become" placeholder="..."></li>
+                    <li>Because of the strong current, he couldn't <b>get to</b> the shore. &rarr; <input type="text" data-answers="reach / arrive at|reach|arrive at" placeholder="..."></li>
+                    <li>Human beings <b>get</b> oxygen, food, and climate balance from the ocean. &rarr; <input type="text" data-answers="receive / obtain|receive|obtain" placeholder="..."></li>
+                </ol>
+                <button class="btn-check" onclick="checkExercise(this)">Check Answers</button>
+                <div class="feedback-msg"></div>
+            </div>
+        </div>
+
+        <!-- Part 2: Grammar - Narrative Past Tenses -->
+        <div class="section-card">
+            <div class="section-title">Part 2: Grammar Workout (Past Simple vs. Past Perfect Simple)</div>
+
+            <div class="exercise">
+                <div class="exercise-title">Task 2.1: Chronology & Gap-Fill</div>
+                <div class="instruction">Put the verbs in brackets into the correct tense: <b>Past Simple</b> (sequential event) or <b>Past Perfect</b> (the "past of the past"):</div>
+                <ol>
+                    <li>By the time the swimmer realized his danger, the current <input type="text" data-answers="had carried" placeholder="carry..."> him far from the beach.</li>
+                    <li>When Enric Sala arrived at the bay in 2008, an easterly gale <input type="text" data-answers="had already started|had started" placeholder="already / start...">.</li>
+                    <li>He <input type="text" data-answers="lost" placeholder="lose..."> his mask and snorkel while the waves were throwing him against the sand.</li>
+                    <li>The marine archaeologists knew that Captain Morgan <input type="text" data-answers="had lost" placeholder="lose..."> his flagship in that area centuries before.</li>
+                    <li>After he <input type="text" data-answers="had survived|survived" placeholder="survive..."> the undertow, he promised never to swim in rough waters again.</li>
+                </ol>
+                <button class="btn-check" onclick="checkExercise(this)">Check Answers</button>
+                <div class="feedback-msg"></div>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Task 2.2: Transformations with "By the time"</div>
+                <div class="instruction">Combine the two facts into one sentence using <b>By the time</b> and the <b>Past Perfect</b>:</div>
+                <ol>
+                    <li>
+                        Fact 1: The swimmer crawled onto the sand.<br>
+                        Fact 2: He lost one of his diving fins.<br>
+                        &rarr; <strong>By the time</strong> <input type="text" style="width: 75%;" data-answers="the swimmer crawled onto the sand, he had lost one of his diving fins|he crawled onto the sand, he had lost one of his diving fins" placeholder="the swimmer crawled onto the sand, he had lost...">.
+                    </li>
+                    <li>
+                        Fact 1: The archaeologists located the sunken ship in 2010.<br>
+                        Fact 2: The wooden hull had dissolved completely over three centuries.<br>
+                        &rarr; <strong>By the time</strong> <input type="text" style="width: 75%;" data-answers="the archaeologists located the sunken ship, the wooden hull had dissolved completely|the archaeologists located the ship, the wooden hull had dissolved" placeholder="the archaeologists located the sunken ship, the wooden hull had dissolved...">.
+                    </li>
+                </ol>
+                <button class="btn-check" onclick="checkExercise(this)">Check Answers</button>
+                <div class="feedback-msg"></div>
+            </div>
+
+            <div class="exercise">
+                <div class="exercise-title">Task 2.3: Error Correction</div>
+                <div class="instruction">Find the mistake in narrative tenses. Type the <b>corrected sentence in full</b>:</div>
+                <ol>
+                    <li>
+                        When the alarm sounded, the ship already collided with an iceberg. &rarr; <br>
+                        <input type="text" style="width: 85%;" data-answers="when the alarm sounded, the ship had already collided with an iceberg|when the alarm sounded the ship had already collided with an iceberg" placeholder="...">
+                    </li>
+                    <li>
+                        By the time the rescue boat arrived, the vessel sank completely. &rarr; <br>
+                        <input type="text" style="width: 85%;" data-answers="by the time the rescue boat arrived, the vessel had sunk completely|by the time the rescue boat arrived the vessel had sunk completely" placeholder="...">
+                    </li>
+                </ol>
+                <button class="btn-check" onclick="checkExercise(this)">Check Answers</button>
+                <div class="feedback-msg"></div>
+            </div>
+        </div>
+
+        <!-- Part 3: Written Practice -->
+        <div class="section-card">
+            <div class="section-title">Part 3: Written Reflection (Learning a Lesson)</div>
+            <div class="exercise">
+                <div class="exercise-title">Task 3.1: An Unforgettable Experience</div>
+                <div class="instruction">
+                    Write a short narrative paragraph (60–80 words) describing an incident where you or someone you know had to <em>learn a lesson</em> from an unpredictable situation (in nature, travel, or sports).
+                    <br><b>Requirements:</b>
+                    <ul>
+                        <li>Use at least two verbs in the <b>Past Perfect</b> (e.g., <em>had planned, had started, had never expected</em>);</li>
+                        <li>Include at least two target words from the trainer (e.g., <em>humble, discovery, bravado, had a hard time</em>).</li>
+                    </ul>
+                </div>
+                <textarea id="hw_written_reflection" placeholder="Type your narrative here. Everything is automatically saved in your browser..."></textarea>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    // Tab Navigation
+    function switchTab(tabName) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+        if (tabName === 'trainer') {
+            document.querySelectorAll('.tab-btn')[0].classList.add('active');
+            document.getElementById('tab-trainer').classList.add('active');
+        } else {
+            document.querySelectorAll('.tab-btn')[1].classList.add('active');
+            document.getElementById('tab-homework').classList.add('active');
+        }
+        localStorage.setItem('life_3c_hw_tab', tabName);
+    }
+
+    // Flashcard Dataset
+    const cardsData = [
+        {
+            word: "discovery",
+            category: "Noun (Added focus)",
+            translation: "открытие, находка",
+            example: "The discovery of historical artifacts beneath the waves changed marine archaeology."
+        },
+        {
+            word: "humble",
+            category: "Adjective (Added focus)",
+            translation: "скромный, смиренный (осознающий силу стихии)",
+            example: "Surviving the dangerous undertow made the scientist feel humble before the ocean."
+        },
+        {
+            word: "bravado",
+            category: "Noun",
+            translation: "бравада, показная безрассудная храбрость",
+            example: "Entering the surf during a coastal gale was an act of pure bravado."
+        },
+        {
+            word: "current",
+            category: "Noun",
+            translation: "течение (водный поток)",
+            example: "A strong offshore current made it nearly impossible to swim toward the beach."
+        },
+        {
+            word: "a couple of times",
+            category: "Expression",
+            translation: "пару раз, в нескольких случаях",
+            example: "The wild ocean has nearly taken my life on a couple of times."
+        },
+        {
+            word: "my heart races",
+            category: "Idiom / Phrase",
+            translation: "сердце бешено колотится (от страха/паники)",
+            example: "Every time I look back on that stormy swim, my heart races."
+        },
+        {
+            word: "decide to call it a day",
+            category: "Idiom",
+            translation: "решить закончить на сегодня / прекратить занятие",
+            example: "When the waves grew violent, he wisely decided to call it a day."
+        },
+        {
+            word: "have a hard time",
+            category: "Idiom",
+            translation: "испытывать сильные трудности, мучиться",
+            example: "The diver had a hard time fighting against the rolling surf."
+        },
+        {
+            word: "let oneself go",
+            category: "Idiom / Phrase",
+            translation: "расслабиться, перестать бороться против течения",
+            example: "Exhausted, he let himself go and allowed the incoming wave to lift him."
+        },
+        {
+            word: "learn one's lesson",
+            category: "Idiom",
+            translation: "извлечь урок из горького опыта",
+            example: "He learned his lesson and never challenged the sea during rough weather."
+        },
+        {
+            word: "seabed",
+            category: "Noun",
+            translation: "морское дно",
+            example: "The waves smashed him down, dragging his limbs along the sandy seabed."
+        },
+        {
+            word: "surf zone",
+            category: "Noun phrase",
+            translation: "зона прибоя",
+            example: "Swimmers should avoid the dangerous surf zone where massive waves break."
+        }
+    ];
+
+    let currentCardIdx = 0;
+    let cardStatus = JSON.parse(localStorage.getItem('life_3c_cards_status')) || {};
+
+    function updateCardDisplay() {
+        const item = cardsData[currentCardIdx];
+        document.getElementById('cardInner').classList.remove('flipped');
+
+        setTimeout(() => {
+            document.getElementById('cardCategory').textContent = item.category;
+            document.getElementById('cardWord').textContent = item.word;
+            document.getElementById('cardTranslation').textContent = item.translation;
+            document.getElementById('cardExample').textContent = item.example;
+        }, 120);
+
+        document.getElementById('counterText').textContent = `Card ${currentCardIdx + 1} of ${cardsData.length}`; const knownCount = Object.values(cardStatus).filter(v => v === true).length; document.getElementById('masteredText').textContent = `Mastered: ${knownCount} / ${cardsData.length}`; document.getElementById('progressBar').style.width = `${(knownCount / cardsData.length) * 100}%`;
+    }
+
+    function flipCard() {
+        document.getElementById('cardInner').classList.toggle('flipped');
+    }
+
+    function nextCard() {
+        currentCardIdx = (currentCardIdx + 1) % cardsData.length;
+        updateCardDisplay();
+    }
+
+    function prevCard() {
+        currentCardIdx = (currentCardIdx - 1 + cardsData.length) % cardsData.length;
+        updateCardDisplay();
+    }
+
+    function markCard(known) {
+        cardStatus[currentCardIdx] = known;
+        localStorage.setItem('life_3c_cards_status', JSON.stringify(cardStatus));
+        nextCard();
+    }
+
+    // Flexible String Sanitizer
+    function cleanStr(s) {
+        return s.toLowerCase()
+                .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g, " ")
+                .replace(/['’]/g, "'")
+                .replace(/\s+/g, " ")
+                .trim();
+    }
+
+    // Task Validation
+    function checkExercise(btn) {
+        const container = btn.closest(".exercise");
+        const inputs = container.querySelectorAll("input[type='text']");
+        const feedback = container.querySelector(".feedback-msg");
+        let allOk = true;
+        let count = 0;
+
+        inputs.forEach(input => {
+            const possible = input.getAttribute("data-answers").split("|").map(cleanStr);
+            const val = cleanStr(input.value);
+            if (val.length > 0) count++;
+
+            if (possible.includes(val)) {
+                input.classList.remove("incorrect");
+                input.classList.add("correct");
+            } else {
+                input.classList.remove("correct");
+                input.classList.add("incorrect");
+                allOk = false;
+            }
+        });
+
+        feedback.classList.add("show");
+        if (allOk && count === inputs.length) {
+            feedback.className = "feedback-msg show good";
+            feedback.textContent = "Great job! All answers are correct.";
+        } else {
+            feedback.className = "feedback-msg show bad";
+            feedback.textContent = "Some answers are incorrect or missing. Check your spelling and try again.";
+        }
+    }
+
+    // Restore on Load
+    document.addEventListener("DOMContentLoaded", () => {
+        updateCardDisplay();
+
+        const savedTab = localStorage.getItem('life_3c_hw_tab');
+        if (savedTab) switchTab(savedTab);
+
+        const fields = document.querySelectorAll("input[type='text'], textarea");
+        fields.forEach((f, i) => {
+            const val = localStorage.getItem("life_3c_hw_field_" + i);
+            if (val !== null) f.value = val;
+            f.addEventListener("input", () => {
+                localStorage.setItem("life_3c_hw_field_" + i, f.value);
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
